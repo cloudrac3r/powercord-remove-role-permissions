@@ -30,8 +30,6 @@ module.exports = class RemoveRolePermissions extends Plugin {
 		const instance = getOwnerInstance(roleList)
 		if (this.cancelled) return
 		inject("rrp-role-list", instance.constructor.prototype, "render", function(_, res) {
-			console.log(this)
-			console.log(res)
 			res.props.children.forEach(c => {
 				if (c && c.props && c.props.permissions) c.props.className = addToClassName(c.props.className, "rrp-permission-category")
 			})
