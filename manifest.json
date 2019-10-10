@@ -1,0 +1,7 @@
+{
+	"name": "Remove Role Permissions",
+	"version": "1.0.0",
+	"description": "Click a button to quickly remove all permissions from a role.",
+	"author": "Cadence#3263",
+	"license": "MIT"
+}
