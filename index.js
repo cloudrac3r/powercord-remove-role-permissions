@@ -29,11 +29,12 @@ module.exports = class RemoveRolePermissions extends Plugin {
 		const roleList = element.children[0]
 		const instance = getOwnerInstance(roleList)
 		if (this.cancelled) return
+		const title = (await getModule(["Messages"])).Messages.GENERAL_PERMISSIONS
 		inject("rrp-role-list", instance.constructor.prototype, "render", function(_, res) {
 			res.props.children.forEach(c => {
 				if (c && c.props && c.props.permissions) c.props.className = addToClassName(c.props.className, "rrp-permission-category")
 			})
-			const generalIndex = res.props.children.findIndex(c => c && c.props && c.props.spec && c.props.spec.title === "General Permissions")
+			const generalIndex = res.props.children.findIndex(c => c && c.props && c.props.spec && c.props.spec.title === title)
 			if (generalIndex !== -1) {
 				const dividerClass = res.props.children.find(c => c && c.props && typeof c.props.className === "string" && c.props.className.includes("40")).props.className
 				res.props.children.splice(generalIndex, 0,
